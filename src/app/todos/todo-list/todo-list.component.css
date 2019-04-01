@@ -1,0 +1,37 @@
+h2, table {
+  width: 50%;
+  margin: auto;
+}
+
+.icon {
+  padding: 0 14px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.toolbarPosition {
+  margin-bottom: 50px;
+  width: 50%;
+  margin: auto;
+}
+
+.section {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  height: 60px;
+}
+
+.admin{
+  width: 150px;
+}
+
+th.mat-header-cell {
+  font-size: 20px;
+  font-weight: bold;
+}
+td.mat-cell{
+  font-size: 16px;
+}
