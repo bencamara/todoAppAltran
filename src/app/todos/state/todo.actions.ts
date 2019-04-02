@@ -10,6 +10,7 @@ export enum TodoActionTypes {
   LoadSuccess = '[Todo] Load Success',
   LoadFail = '[Todo] Load Fail',
   UpdateTodo = '[Todo] Update Todo',
+  UpdateListTodos = '[Todo] Update Todos',
   UpdateTodoSuccess = '[Todo] Update Todo Success',
   UpdateTodoFail = '[Todo] Update Todo Fail'
 }
@@ -18,6 +19,12 @@ export enum TodoActionTypes {
 
 export class UpdateTodo implements Action {
   readonly type = TodoActionTypes.UpdateTodo;
+
+  constructor(public payload: Todo) { }
+}
+
+export class UpdateListTodos implements Action {
+  readonly type = TodoActionTypes.UpdateListTodos;
 
   constructor(public payload: Todo) { }
 }
@@ -63,7 +70,7 @@ export class LoadFail implements Action {
   constructor(public payload: string) { }
 }
 
- export type TodoActions =
+ export type TodoActions = UpdateListTodos
   | SetCurrentTodo
   | ClearCurrentTodo
   | InitializeCurrentTodo

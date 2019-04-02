@@ -103,6 +103,15 @@ export function reducer(state = initialState, action: TodoActions): TodoState {
         error: ''
       };
 
+      case TodoActionTypes.UpdateListTodos:
+      const todoListUpdated = state.todos.filter(item => item.id !== action.payload.id)
+      todoListUpdated.push(action.payload)
+        return {
+        ...state,
+        todos: todoListUpdated,
+        error: ''
+      };
+
     case TodoActionTypes.UpdateTodoFail:
       return {
         ...state,

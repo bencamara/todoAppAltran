@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import  * as todotActions  from './todo.actions';
+import  * as todoActions  from './todo.actions';
 
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { mergeMap, map, catchError } from 'rxjs/operators';
@@ -14,22 +14,22 @@ export class TodoEffets {
           private todoService: TodoService) { }
   @Effect()
   loadTodo$ = this.actions$.pipe(
-      ofType(todotActions.TodoActionTypes.Load),
-      mergeMap((action: todotActions.Load) => this.todoService.getTodos().pipe(
-        map((todos: Todo[]) => (new todotActions.LoadSuccess(todos))),
+      ofType(todoActions.TodoActionTypes.Load),
+      mergeMap((action: todoActions.Load) => this.todoService.getTodos().pipe(
+        map((todos: Todo[]) => (new todoActions.LoadSuccess(todos))),
         //catchError ne retourne pas un observable, donc il faut le créer
-        catchError( err => of(new todotActions.LoadFail(err)))
+        catchError( err => of(new todoActions.LoadFail(err)))
       ))
   )
 
   @Effect()
   updateTodo$ = this.actions$.pipe(
-      ofType(todotActions.TodoActionTypes.UpdateTodo),
-      map((action: todotActions.UpdateTodo) => action.payload),
+      ofType(todoActions.TodoActionTypes.UpdateTodo),
+      map((action: todoActions.UpdateTodo) => action.payload),
       mergeMap((todo: Todo) => this.todoService.updateTodo(todo).pipe(
-        map((todo: Todo) => (new todotActions.UpdateTodoSuccess(todo))),
+        map((todo: Todo) => (new todoActions.UpdateTodoSuccess(todo))),
         //catchError ne retourne pas un observable, donc il faut le créer
-        catchError( err => of(new todotActions.UpdateTodoFail(err)))
+        catchError( err => of(new todoActions.UpdateTodoFail(err)))
       ))
   )
 }
