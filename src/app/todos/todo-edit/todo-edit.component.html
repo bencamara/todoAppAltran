@@ -1,0 +1,19 @@
+<form class="formContainer" [formGroup]="todoForm" novalidate>
+      <mat-form-field>
+        <input matInput placeholder="Todo Name" class="form-control"  name="name" formControlName="name">
+        <div class="alert alert-danger" *ngIf="todoForm.get('name').hasError('required') && todoForm.get('name').touched">
+            Name is required
+          </div>
+      </mat-form-field>
+      <mat-form-field>
+        <textarea matInput placeholder="Todo Description"  name="description" formControlName="description"></textarea>
+      </mat-form-field>
+      <section class="section">
+          <mat-checkbox class="example-margin" name="statut" formControlName="statut"></mat-checkbox>
+      </section>
+      <div class="button-row">
+          <button mat-raised-button  color="primary"  [disabled]="todoForm.invalid" (click)="saveTodo()">Save</button>
+          <button mat-raised-button  color="accent" (click)="cancelEdit()"> Cancel </button>
+      </div>
+</form>
+

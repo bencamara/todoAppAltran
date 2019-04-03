@@ -1,0 +1,24 @@
+form {
+    width: 40%;
+    margin: auto;
+}
+.formContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.formContainer > * {
+  width: 100%;
+}
+
+.formContainer form {
+  margin-bottom: 20px;
+}
+
+.formContainer form > * {
+  margin: 5px 0;
+}
+
+.button-row {
+  margin: 10px 20px;
+}

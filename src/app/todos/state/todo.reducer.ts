@@ -30,7 +30,7 @@ export const getCurrentTodoId = createSelector(
   state => state.currentTodoId
 );
 
-export const getCurrentTodo = createSelector(
+export const getTodo = createSelector(
   getTodoFeatureState,
   getCurrentTodoId,
   (state, currentTodoId) =>{
@@ -67,10 +67,10 @@ export function reducer(state = initialState, action: TodoActions): TodoState {
         currentTodoId: action.payload.id
       };
 
-    case TodoActionTypes.ClearCurrentTodo:
-      return {
+      case TodoActionTypes.GetCurrentTodo:
+       return {
         ...state,
-        currentTodoId: null
+        currentTodoId: action.payload
       };
 
     case TodoActionTypes.InitializeCurrentTodo:

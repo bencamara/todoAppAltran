@@ -9,7 +9,8 @@ import {
   MatCardModule,
   MatIconModule,
   MatButtonModule,
-  MatTabsModule
+  MatTabsModule,
+  MatFormFieldModule
 } from "@angular/material";
 
 import { StoreModule } from '@ngrx/store';
@@ -19,14 +20,18 @@ import { reducer } from './state/todo.reducer';
 import { TodoEffets } from './state/todo.effects';
 import { TodoListComponent } from './todo-list/todo-list.component';
 import { RouterModule } from '@angular/router';
+import { TodoEditComponent } from './todo-edit/todo-edit.component';
+import { TodoGuardService } from './todo-guard.service';
+import { TodoService } from './todo-service';
 
 @NgModule({
-  declarations: [TodoListComponent],
+  declarations: [TodoListComponent, TodoEditComponent],
   imports: [
     SharedModule,
     RouterModule.forChild([
       { path: 'todolist', component: TodoListComponent },
-
+      { path: 'todolist/:id',
+      canActivate: [ TodoGuardService ], component: TodoEditComponent }
   ]),
     StoreModule.forFeature('todos', reducer),
     EffectsModule.forFeature([TodoEffets]),
@@ -44,6 +49,7 @@ import { RouterModule } from '@angular/router';
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
+    MatFormFieldModule,
     MatProgressSpinnerModule
   ]
 })

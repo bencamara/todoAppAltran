@@ -7,7 +7,7 @@ import { Todo } from './todo';
 
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class TodoService {
   private todosUrl = 'api/todos';

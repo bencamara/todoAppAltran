@@ -4,7 +4,7 @@ import { Todo } from '../todo';
 
 export enum TodoActionTypes {
   SetCurrentTodo = '[Todo] Set Current Todo',
-  ClearCurrentTodo = '[Todo] Clear Current Todo',
+  GetCurrentTodo = '[Todo] Get Current Todo',
   InitializeCurrentTodo = '[Todo] Initialize Current Todo',
   Load = '[Todo] Load',
   LoadSuccess = '[Todo] Load Success',
@@ -16,6 +16,12 @@ export enum TodoActionTypes {
 }
 
 // Action Creators
+
+export class GetCurrentTodo implements Action {
+  readonly type = TodoActionTypes.GetCurrentTodo;
+
+  constructor(public payload: number) { }
+}
 
 export class UpdateTodo implements Action {
   readonly type = TodoActionTypes.UpdateTodo;
@@ -46,10 +52,6 @@ export class SetCurrentTodo implements Action {
   constructor(public payload: Todo) { }
 }
 
-export class ClearCurrentTodo implements Action {
-  readonly type = TodoActionTypes.ClearCurrentTodo;
-}
-
 export class InitializeCurrentTodo implements Action {
   readonly type = TodoActionTypes.InitializeCurrentTodo;
 }
@@ -72,7 +74,7 @@ export class LoadFail implements Action {
 
  export type TodoActions = UpdateListTodos
   | SetCurrentTodo
-  | ClearCurrentTodo
+  | GetCurrentTodo
   | InitializeCurrentTodo
   | Load
   | LoadSuccess
