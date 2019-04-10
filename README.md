@@ -9,7 +9,7 @@
 - Le port utilisée est 4300. l'utilisateur peut le modifier à souhait via la commande   ``` ng serve --port numero_du_port ```
 
 ## Fonctionnalité implementées.
--Listing des Todos
+- Listing des Todos
 - Changement D'etat de chaque TODO
 -  Interface descriptif de chaque TODO
 - Creation de TODO 
