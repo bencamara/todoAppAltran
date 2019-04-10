@@ -1,7 +1,7 @@
 /* Defines the product entity */
 export interface Todo {
-  id: number | null;
-  statut: boolean
+  id: string | null;
+  statut: boolean;
   name: string;
   description: string;
 }

@@ -1,17 +1,13 @@
-import { createFeatureSelector, createSelector } from "@ngrx/store";
+import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { Todo } from '../todo';
 import { TodoActionTypes, TodoActions } from './todo.actions';
 
-// State for this feature (Product)
 export interface TodoState {
-  currentTodoId: number | null;
+  currentTodoId: string | null;
   todos: Todo[];
   error: string;
 }
 
-// Extends the app state to include the product feature.
-// This is required because products are lazy loaded.
-// So the reference to ProductState cannot be added to app.state.ts directly.
 export interface State {
   todos: TodoState;
 }
@@ -19,7 +15,7 @@ export interface State {
 const initialState: TodoState = {
   currentTodoId: null,
   todos: [],
-  error: ''
+  error: '',
 };
 
 // Selector functions
@@ -29,16 +25,15 @@ export const getCurrentTodoId = createSelector(
   getTodoFeatureState,
   state => state.currentTodoId
 );
-
 export const getTodo = createSelector(
   getTodoFeatureState,
   getCurrentTodoId,
   (state, currentTodoId) =>{
-    if (currentTodoId === 0){
+    if (currentTodoId === 'new'){
         return{
-            id: 0,
+            id: 'new',
             statut: false,
-            name: 'new',
+            name: '',
             description: ''
         };
     }else{
@@ -58,64 +53,71 @@ export const getError = createSelector(
 );
 
 export function reducer(state = initialState, action: TodoActions): TodoState {
-
   switch (action.type) {
-
-    case TodoActionTypes.SetCurrentTodo:
+    case TodoActionTypes.GetCurrentTodo:
       return {
         ...state,
-        currentTodoId: action.payload.id
-      };
-
-      case TodoActionTypes.GetCurrentTodo:
-       return {
-        ...state,
-        currentTodoId: action.payload
+        currentTodoId: action.payload,
       };
 
     case TodoActionTypes.InitializeCurrentTodo:
       return {
         ...state,
-        currentTodoId : 0
+        currentTodoId: 'new',
       };
 
+    // Create TODO
+    case TodoActionTypes.CreateTodoSuccess:
+      const newTodosList = state.todos.map(item => (action.payload.id === item.id ? item : action.payload));
+      return {
+        ...state,
+        todos: newTodosList,
+      };
+
+    case TodoActionTypes.CreateTodoFail:
+      return {
+        ...state,
+        error: action.payload,
+      };
+
+    // Load TODO
     case TodoActionTypes.LoadSuccess:
       return {
         ...state,
         todos: action.payload,
-        error: ''
+        error: '',
       };
 
     case TodoActionTypes.LoadFail:
       return {
         ...state,
         todos: [],
-        error: action.payload
+        error: action.payload,
       };
 
-      case TodoActionTypes.UpdateTodoSuccess:
-      const updatedTodos = state.todos.map(
-        item => action.payload.id === item.id ? action.payload : item);
+    // Update TODO
+    case TodoActionTypes.UpdateTodoSuccess:
+      const updatedTodos = state.todos.map(item => (action.payload.id === item.id ? action.payload : item));
       return {
         ...state,
         todos: updatedTodos,
         currentTodoId: action.payload.id,
-        error: ''
+        error: '',
       };
 
-      case TodoActionTypes.UpdateListTodos:
-      const todoListUpdated = state.todos.filter(item => item.id !== action.payload.id)
-      todoListUpdated.push(action.payload)
-        return {
+    case TodoActionTypes.UpdateListTodos:
+      const todoListUpdated = state.todos.filter(item => item.id !== action.payload.id);
+      todoListUpdated.push(action.payload);
+      return {
         ...state,
         todos: todoListUpdated,
-        error: ''
+        error: '',
       };
 
     case TodoActionTypes.UpdateTodoFail:
       return {
         ...state,
-        error: action.payload
+        error: action.payload,
       };
 
     default:

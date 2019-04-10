@@ -2,11 +2,10 @@ import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, Router } from '@angular/router';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TodoGuardService implements CanActivate {
-
-  constructor(private _router: Router) { }
+  constructor(private _router: Router) {}
 
   canActivate(route: ActivatedRouteSnapshot): boolean {
     const id = +route.url[1].path;

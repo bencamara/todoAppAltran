@@ -3,16 +3,18 @@ import { Action } from '@ngrx/store';
 import { Todo } from '../todo';
 
 export enum TodoActionTypes {
-  SetCurrentTodo = '[Todo] Set Current Todo',
   GetCurrentTodo = '[Todo] Get Current Todo',
   InitializeCurrentTodo = '[Todo] Initialize Current Todo',
   Load = '[Todo] Load',
   LoadSuccess = '[Todo] Load Success',
   LoadFail = '[Todo] Load Fail',
+  CreateTodo = '[Todo] Load',
+  CreateTodoSuccess = '[Todo] Create success',
+  CreateTodoFail = '[Todo] Create Fail',
   UpdateTodo = '[Todo] Update Todo',
   UpdateListTodos = '[Todo] Update Todos',
   UpdateTodoSuccess = '[Todo] Update Todo Success',
-  UpdateTodoFail = '[Todo] Update Todo Fail'
+  UpdateTodoFail = '[Todo] Update Todo Fail',
 }
 
 // Action Creators
@@ -20,36 +22,46 @@ export enum TodoActionTypes {
 export class GetCurrentTodo implements Action {
   readonly type = TodoActionTypes.GetCurrentTodo;
 
-  constructor(public payload: number) { }
+  constructor(public payload: string) {}
+}
+
+export class CreateTodo implements Action {
+  readonly type = TodoActionTypes.CreateTodo;
+
+  constructor(public payload: Todo) {}
+}
+export class CreateTodoSuccess implements Action {
+  readonly type = TodoActionTypes.CreateTodoSuccess;
+
+  constructor(public payload: Todo) {}
+}
+export class CreateTodoFail implements Action {
+  readonly type = TodoActionTypes.CreateTodoFail;
+
+  constructor(public payload: string) {}
 }
 
 export class UpdateTodo implements Action {
   readonly type = TodoActionTypes.UpdateTodo;
 
-  constructor(public payload: Todo) { }
+  constructor(public payload: Todo) {}
 }
 
 export class UpdateListTodos implements Action {
   readonly type = TodoActionTypes.UpdateListTodos;
 
-  constructor(public payload: Todo) { }
+  constructor(public payload: Todo) {}
 }
 
 export class UpdateTodoSuccess implements Action {
   readonly type = TodoActionTypes.UpdateTodoSuccess;
 
-  constructor(public payload: Todo) { }
+  constructor(public payload: Todo) {}
 }
 export class UpdateTodoFail implements Action {
   readonly type = TodoActionTypes.UpdateTodoFail;
 
-  constructor(public payload: string) { }
-}
-
-export class SetCurrentTodo implements Action {
-  readonly type = TodoActionTypes.SetCurrentTodo;
-
-  constructor(public payload: Todo) { }
+  constructor(public payload: string) {}
 }
 
 export class InitializeCurrentTodo implements Action {
@@ -63,17 +75,17 @@ export class Load implements Action {
 export class LoadSuccess implements Action {
   readonly type = TodoActionTypes.LoadSuccess;
 
-  constructor(public payload: Todo[]) { }
+  constructor(public payload: Todo[]) {}
 }
 
 export class LoadFail implements Action {
   readonly type = TodoActionTypes.LoadFail;
 
-  constructor(public payload: string) { }
+  constructor(public payload: string) {}
 }
 
- export type TodoActions = UpdateListTodos
-  | SetCurrentTodo
+export type TodoActions =
+  | UpdateListTodos
   | GetCurrentTodo
   | InitializeCurrentTodo
   | Load
@@ -81,5 +93,7 @@ export class LoadFail implements Action {
   | LoadFail
   | UpdateTodo
   | UpdateTodoSuccess
-  | UpdateTodoFail;
-
+  | UpdateTodoFail
+  | CreateTodo
+  | CreateTodoSuccess
+  | CreateTodoFail;

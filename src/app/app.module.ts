@@ -3,20 +3,17 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {HttpClientModule} from "@angular/common/http";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 import { TodoData } from './todos/todo-data';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import {  MatToolbarModule} from "@angular/material";
-
+import { MatToolbarModule } from '@angular/material';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -29,11 +26,10 @@ import {  MatToolbarModule} from "@angular/material";
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({
       name: 'TodoApp DevTools',
-      maxAge: 25
-    })
-
+      maxAge: 25,
+    }),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

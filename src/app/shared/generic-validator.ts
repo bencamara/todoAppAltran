@@ -1,7 +1,6 @@
 import { FormGroup } from '@angular/forms';
 export class GenericValidator {
-  constructor(private validationMessages: { [key: string]: { [key: string]: string } }) {
-  }
+  constructor(private validationMessages: { [key: string]: { [key: string]: string } }) {}
   processMessages(container: FormGroup): { [key: string]: string } {
     const messages = {};
     for (const controlKey in container.controls) {
@@ -26,5 +25,4 @@ export class GenericValidator {
     }
     return messages;
   }
-
 }

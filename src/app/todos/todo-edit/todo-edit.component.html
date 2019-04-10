@@ -12,7 +12,7 @@
           <mat-checkbox class="example-margin" name="statut" formControlName="statut"></mat-checkbox>
       </section>
       <div class="button-row">
-          <button mat-raised-button  color="primary"  [disabled]="todoForm.invalid" (click)="saveTodo()">Save</button>
+          <button mat-raised-button  class="buttonForm" color="primary"  [disabled]="todoForm.invalid" (click)="saveTodo()">Save</button>
           <button mat-raised-button  color="accent" (click)="cancelEdit()"> Cancel </button>
       </div>
 </form>

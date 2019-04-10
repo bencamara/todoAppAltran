@@ -20,5 +20,8 @@ form {
 }
 
 .button-row {
-  margin: 10px 20px;
+  margin-top: 20px;
+}
+.buttonForm {
+  margin-right: 30px;
 }
