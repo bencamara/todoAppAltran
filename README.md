@@ -6,7 +6,7 @@
 
 ## Utilisation
 - ``` npm start ``` pour demarrer l'application..
-- Le port utilisée est 4300. l'utilisateur peut le modifier à souhait via la commande   ``` ng serve --port numero_du_port ```
+- Le port utilisé est 4300. l'utilisateur peut le modifier à souhait via la commande   ``` ng serve --port numero_du_port ```
 
 ## Fonctionnalité implementées.
 - Listing des Todos
