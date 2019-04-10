@@ -16,8 +16,8 @@ Le port utilisée est 4300.l'utilisateur peut le modifier à souhait via la comm
 `` Creation de TODO ``
 
 ## Environnement Technique
-Angular 7
-La gestion globale de l'etat de l'application est basée sur NRGX.
-L'interface graphique est basée sur Angular Material
-Les données de l'application sont stockées en memoire.
+- Angular 7
+- La gestion globale de l'etat de l'application est basée sur NRGX.
+- L'interface graphique est basée sur Angular Material
+- Les données de l'application sont stockées en memoire.
 
